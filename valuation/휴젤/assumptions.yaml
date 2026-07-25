@@ -1,0 +1,57 @@
+# 값이 있는 항목은 반드시 source를 채운다. 모르면 value: null, source: "확인 불가"로 둘 것.
+# 계산 모듈은 value가 null인 필수 입력이 있으면 계산을 거부하고 어떤 필드가 없는지 알려준다.
+
+meta:
+  currency: KRW
+  reference_current_per:
+    value: 20
+    source: "시사저널e, 톡신업계 PER 비교 기사 - 휴젤 현재 PER 약 20배, 메디톡스 33배, 대웅제약 9~10배"
+
+normalized_per:
+  reported_net_income:
+    value: null
+    unit: KRW
+    source: >
+      확인 불가 - 2026년 1분기 순이익 406억원(theses/휴젤.md, 한국경제 2026-05-08)은
+      확보했으나 이는 분기치. 정상화 PER은 연간(또는 TTM) 순이익 기준이 원칙인데,
+      1개 분기 수치를 그대로 4배 해서 연환산하는 것은 계절성을 반영하지 못한 추정이므로
+      "사실"로 쓰지 않고 null로 둔다. 연간(TTM) 순이익 원문 확인 후 채울 것.
+  shares_outstanding:
+    value: 12604000
+    unit: "주"
+    source: "검색 결과(씽크풀 등) - 발행주식 12,604천주. 1차 공시(DART) 원문 미대조, 다소 불확실"
+  one_off_items: []
+  per_multiple:
+    bull:
+      value: null
+      source: "확인 불가 - 정성적으로는 미국 직판 성과 확인 시 메디톡스 수준(33배)에 근접할 수 있다는 가설이나, 배수 자체는 정성적 추정이라 수치화하지 않음"
+    base:
+      value: 20
+      source: "meta.reference_current_per와 동일 (시사저널e) - 현재 시장이 부여한 배수를 그대로 사용"
+    bear:
+      value: null
+      source: "확인 불가 - 매각 협상 결렬 시 대웅제약 수준(9~10배)까지 눌릴 수 있다는 가설이나 정성적 추정이라 수치화하지 않음"
+
+dcf:
+  fcf_base:
+    value: null
+    source: "확인 불가 - 잉여현금흐름(영업현금흐름-capex) 원문 미확인. 영업이익을 대용치로 쓰지 않음(세금·운전자본·capex 미반영 왜곡 우려)"
+  discount_rate:
+    value: null
+    source: "확인 불가 - WACC 산정에 필요한 베타·부채비율·타인자본비용 원자료 없음"
+  terminal_growth_rate:
+    value: null
+    source: "확인 불가"
+  years:
+    value: 5
+    source: "모델 설정값(전망 기간) - 소스 아님, 임의 선택"
+  shares_outstanding:
+    value: 12604000
+    source: "normalized_per.shares_outstanding과 동일 출처"
+  net_debt:
+    value: null
+    source: "확인 불가 - 재무제표 원문 필요"
+  growth_rate:
+    bull: { value: null, source: "확인 불가" }
+    base: { value: null, source: "확인 불가" }
+    bear: { value: null, source: "확인 불가" }

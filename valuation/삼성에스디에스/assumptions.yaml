@@ -1,0 +1,55 @@
+meta:
+  currency: KRW
+
+normalized_per:
+  reported_net_income:
+    value: null
+    source: >
+      확인 불가(연간 기준) - 2026년 1분기 당기순이익 918억원은 확보(kbthink 리포트 요약,
+      theses/삼성에스디에스.md 갱신 필요). 다만 이는 분기치이고, 정상화 PER은 연간(TTM)
+      기준이 원칙이라 그대로 쓰지 않음. 2~4분기 실적 확보 후 합산할 것.
+  shares_outstanding:
+    value: null
+    source: "확인 불가 - 여러 차례 검색했으나 발행주식수(자사주 제외) 수치를 찾지 못함. DART 필요"
+  one_off_items:
+    - description: "2026 1Q 퇴직급여 산정기준 변경에 따른 일회성 비용"
+      amount:
+        value: 112000000000
+        unit: KRW
+        source: "다음뉴스 실적속보 - '퇴직급여비용 충당 1,120억원을 일시에 반영'"
+  per_multiple:
+    bull: { value: null, source: "확인 불가" }
+    base: { value: null, source: "확인 불가 - peer(타 SI/클라우드 업체) PER 비교 미실시" }
+    bear: { value: null, source: "확인 불가" }
+
+sotp:
+  segments:
+    IT서비스:
+      metric:
+        value: 1610500000000
+        unit: KRW
+        source: "2026 1Q IT서비스 부문 매출 1조 6,105억원 (다음뉴스 실적속보) - 분기치, 연환산 아님"
+      multiple:
+        value: null
+        source: "확인 불가 - SI/ITO 업종 평균 EV/Sales 또는 EV/EBIT 배수 조사 안 함"
+    클라우드:
+      metric:
+        value: 690900000000
+        unit: KRW
+        source: "2026 1Q 클라우드 매출 6,909억원(+5.8% YoY), IT서비스 내 최대 비중 (다음뉴스) - 분기치"
+      multiple:
+        value: null
+        source: "확인 불가 - 클라우드 사업 특성상 SI보다 높은 배수가 정당화될 수 있다는 정성적 가설만 있고, 수치 근거 없음"
+    물류BPO:
+      metric:
+        value: null
+        source: "확인 불가 - 물류BPO 부문 별도 매출액을 이번 조사에서 찾지 못함"
+      multiple:
+        value: null
+        source: "확인 불가"
+  net_debt:
+    value: null
+    source: "확인 불가"
+  shares_outstanding:
+    value: null
+    source: "확인 불가 (normalized_per.shares_outstanding과 동일 문제)"
