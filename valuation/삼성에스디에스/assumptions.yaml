@@ -1,5 +1,13 @@
 meta:
   currency: KRW
+  fy2025_actual:
+    revenue: { value: 13929900000000, source: "2025년 매출 13조9,299억원 (데이터뉴스, S저널) - 확정 잠정실적" }
+    operating_income: { value: 957100000000, source: "2025년 영업이익 9,571억원(+5.0% YoY) - 동일 출처" }
+    note: >
+      중요: 2026년 연간 컨센서스(영업이익 8,260억원, 하나증권)가 2025년 실제(9,571억원)
+      보다 오히려 낮다. 즉 "2026년은 다르다"는 리포트 제목과 달리, 2026년은 전년 대비
+      이익이 감소하는 해로 컨센서스가 잡혀 있고 턴어라운드는 2027년(영업이익 1조96억원
+      전망)로 미뤄져 있다는 뜻 - theses/삼성에스디에스.md에 이 비교가 빠져있어 추가 필요.
 
 normalized_per:
   reported_net_income:
@@ -7,10 +15,14 @@ normalized_per:
     source: >
       확인 불가(연간 기준) - 2026년 1분기 당기순이익 918억원은 확보(kbthink 리포트 요약,
       theses/삼성에스디에스.md 갱신 필요). 다만 이는 분기치이고, 정상화 PER은 연간(TTM)
-      기준이 원칙이라 그대로 쓰지 않음. 2~4분기 실적 확보 후 합산할 것.
+      기준이 원칙이라 그대로 쓰지 않음. 2025년 연간 순이익도 검색에서 못 찾음(영업이익만
+      확인됨, 위 meta.fy2025_actual 참고). 2~4분기 실적 확보 후 합산할 것.
   shares_outstanding:
     value: null
-    source: "확인 불가 - 여러 차례 검색했으나 발행주식수(자사주 제외) 수치를 찾지 못함. DART 필요"
+    source: >
+      확인 불가 - 5회 이상 다른 검색어로 시도했으나 발행주식수(자사주 제외) 수치를
+      찾지 못함. fnguide/DART가 WebFetch에서 403으로 막혀 원문 접근도 안 됨. 사용자가
+      증권사 HTS/MTS에서 직접 확인해 채워주는 게 가장 빠를 것으로 보임.
   one_off_items:
     - description: "2026 1Q 퇴직급여 산정기준 변경에 따른 일회성 비용"
       amount:
@@ -49,7 +61,10 @@ sotp:
         source: "확인 불가"
   net_debt:
     value: null
-    source: "확인 불가"
+    source: >
+      확인 불가 - 2026 1분기 기준 현금성자산 약 6.6조원은 확보(경제타임스 등, "연간
+      FCF 0.5조원 가정 시 2031년까지 10조원 투자 로드맵" 관련 기사). 다만 차입금(부채)
+      쪽 수치를 찾지 못해 순현금/순차입금을 계산할 수 없음.
   shares_outstanding:
     value: null
     source: "확인 불가 (normalized_per.shares_outstanding과 동일 문제)"
