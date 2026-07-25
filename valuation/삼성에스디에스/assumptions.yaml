@@ -1,5 +1,15 @@
 meta:
   currency: KRW
+  market_cap:
+    value: 27043500000000
+    source: "2026년 6월 기준 시가총액 27조435억원, 코스피 37위 (검색 결과 요약)"
+  derived_shares_outstanding:
+    value: 142184543
+    source: >
+      역산치 - market_cap(2026-06 시점) / 주가 190,200원(2026-07-13 시점)으로 계산.
+      **두 값의 기준일이 다르다(약 1개월 차이)** - SDS는 52주 변동폭이 14.4만~38.9만원으로
+      매우 커서, 이 1개월 사이 가격이 달랐다면 역산치에 오차가 생긴다. 참고용으로만 쓰고
+      가능하면 동일 시점의 발행주식수 원문으로 교체할 것.
   fy2025_actual:
     revenue: { value: 13929900000000, source: "2025년 매출 13조9,299억원 (데이터뉴스, S저널) - 확정 잠정실적" }
     operating_income: { value: 957100000000, source: "2025년 영업이익 9,571억원(+5.0% YoY) - 동일 출처" }
@@ -18,21 +28,27 @@ normalized_per:
       기준이 원칙이라 그대로 쓰지 않음. 2025년 연간 순이익도 검색에서 못 찾음(영업이익만
       확인됨, 위 meta.fy2025_actual 참고). 2~4분기 실적 확보 후 합산할 것.
   shares_outstanding:
-    value: null
-    source: >
-      확인 불가 - 5회 이상 다른 검색어로 시도했으나 발행주식수(자사주 제외) 수치를
-      찾지 못함. fnguide/DART가 WebFetch에서 403으로 막혀 원문 접근도 안 됨. 사용자가
-      증권사 HTS/MTS에서 직접 확인해 채워주는 게 가장 빠를 것으로 보임.
+    value: 142184543
+    source: "meta.derived_shares_outstanding과 동일 (역산치, 시점 불일치 주의)"
   one_off_items:
     - description: "2026 1Q 퇴직급여 산정기준 변경에 따른 일회성 비용"
       amount:
         value: 112000000000
         unit: KRW
         source: "다음뉴스 실적속보 - '퇴직급여비용 충당 1,120억원을 일시에 반영'"
+  # 아래 per_multiple은 reported_net_income이 여전히 null이라 공통 normalized_eps 경로를
+  # 못 쓴다. 대신 애널리스트별 EPS 추정치를 시나리오별로 직접 지정하는 방식(코드가 지원)을
+  # 사용 - EPS 자체도 애널리스트마다 다르므로 억지로 하나로 합치지 않음(규칙 3).
   per_multiple:
-    bull: { value: null, source: "확인 불가" }
-    base: { value: null, source: "확인 불가 - peer(타 SI/클라우드 업체) PER 비교 미실시" }
-    bear: { value: null, source: "확인 불가" }
+    bull:
+      eps: { value: 11632, source: "iM증권 - 2027~2028년 평균 EPS 추정치" }
+      multiple: { value: 23.5, source: "iM증권 - 최근 2년 평균 PER에 20% 할증, 목표주가 27만원 산출 근거" }
+    base:
+      eps: { value: 10015, source: "대신증권 - 12MF(향후 12개월) EPS 추정치" }
+      multiple: { value: 20.5, source: "대신증권 - 국내외 peer 12MF PER 평균 기준(해외 peer 30% 할인 적용), 목표주가 21만원 산출 근거" }
+    bear:
+      eps: { value: 10015, source: "대신증권 12MF EPS와 동일치 사용 - 약세 시나리오는 배수만 낮춤" }
+      multiple: { value: 17.7, source: "알파스퀘어 LG CNS 리포트의 peer 비교표 - 삼성SDS 현재 PER 17.7배 (기준 시점/EPS 불명확, 위 12MF EPS와 다른 기준일 가능성 있음)" }
 
 sotp:
   segments:
@@ -66,5 +82,5 @@ sotp:
       FCF 0.5조원 가정 시 2031년까지 10조원 투자 로드맵" 관련 기사). 다만 차입금(부채)
       쪽 수치를 찾지 못해 순현금/순차입금을 계산할 수 없음.
   shares_outstanding:
-    value: null
-    source: "확인 불가 (normalized_per.shares_outstanding과 동일 문제)"
+    value: 142184543
+    source: "meta.derived_shares_outstanding과 동일 (역산치, 시점 불일치 주의)"
